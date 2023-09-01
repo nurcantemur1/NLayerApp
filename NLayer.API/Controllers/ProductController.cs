@@ -10,10 +10,10 @@ namespace NLayer.API.Controllers
 {
     public class ProductController : CustomBaseController
     {
-        private IService<Product> _productservice;
+        private IProductService _productservice;
         private IMapper _mapper;
 
-        public ProductController(IService<Product> productservice, IMapper mapper)
+        public ProductController(IProductService productservice, IMapper mapper)
         {
             _productservice = productservice;
             _mapper = mapper;
@@ -56,6 +56,11 @@ namespace NLayer.API.Controllers
             await _productservice.RemoveAsync(product);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProductWithCategory()
+        {
+            return CreateActionResult( await _productservice.GetProductsWithCategoty());
         }
     }
 }
