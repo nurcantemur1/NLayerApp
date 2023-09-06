@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using NLayer.Core.DTOs;
+using NLayer.Service.Exceptions;
 using NLayer.Service.Expections;
 using System.Text.Json;
 
@@ -18,7 +19,8 @@ namespace NLayer.API.Middlewares
                     var statusCode = expectionFeature.Error switch
                     {
                         ClientSideException => 400,
-                        _ => 500
+                        NotFoundException => 404,
+                        _ => 500 //loglama ve alert eklenebilir
                     };
                     context.Response.StatusCode = statusCode;
                     var response = CustomResponseDto<NoContentDto>.Error(statusCode, expectionFeature.Error.Message);

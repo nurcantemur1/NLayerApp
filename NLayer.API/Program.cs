@@ -27,10 +27,13 @@ namespace NLayer.API
 
             builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttiribute())).AddFluentValidation(x=> x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidation>());
             builder.Services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true); //webapp te gerek yok
-            
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
