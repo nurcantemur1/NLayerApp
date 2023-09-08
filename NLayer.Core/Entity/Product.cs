@@ -1,6 +1,4 @@
-﻿using NLayer.Core.Entity;
-
-namespace NLayer.Core.Entity
+﻿namespace NLayer.Core.Entity
 {
     public class Product : BaseEntity
     {

@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NLayer.API.Filters;
 using NLayer.Core.DTOs;
 using NLayer.Core.Entity;
 using NLayer.Core.Services;
-using NLayer.Service.Services;
 
 namespace NLayer.API.Controllers
 {
@@ -33,7 +31,7 @@ namespace NLayer.API.Controllers
         {
             var product = await _productservice.GetByIdAsync(id);
             var productsDto = _mapper.Map<ProductDto>(product);
-            return CreateActionResult(CustomResponseDto<ProductDto>.Success(productsDto,200));
+            return CreateActionResult(CustomResponseDto<ProductDto>.Success(productsDto, 200));
         }
 
         [HttpPost]
@@ -41,7 +39,7 @@ namespace NLayer.API.Controllers
         {
             var product = await _productservice.AddAsync(_mapper.Map<Product>(productDto));
             var productsDto = _mapper.Map<ProductDto>(product);
-            return CreateActionResult(CustomResponseDto<ProductDto>.Success(productsDto,201));
+            return CreateActionResult(CustomResponseDto<ProductDto>.Success(productsDto, 201));
         }
 
         [HttpPut]
@@ -62,7 +60,7 @@ namespace NLayer.API.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductWithCategory()
         {
-            return CreateActionResult( await _productservice.GetProductsWithCategoty());
+            return CreateActionResult(await _productservice.GetProductsWithCategoty());
         }
     }
 }

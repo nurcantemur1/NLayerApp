@@ -4,14 +4,14 @@ using NLayer.Core.DTOs;
 
 namespace NLayer.API.Filters
 {
-    public class ValidateFilterAttiribute: ActionFilterAttribute
+    public class ValidateFilterAttiribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if(!context.ModelState.IsValid)
+            if (!context.ModelState.IsValid)
             {
-                var results = context.ModelState.Values.SelectMany(x=>x.Errors).Select(x=> x.ErrorMessage).ToList();
-                context.Result = new BadRequestObjectResult(CustomResponseDto<NoContentDto>.Error(400,results));
+                var results = context.ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList();
+                context.Result = new BadRequestObjectResult(CustomResponseDto<NoContentDto>.Error(400, results));
             }
         }
     }

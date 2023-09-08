@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NLayer.Core.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLayer.Repository.Configurations
 {
@@ -17,10 +11,10 @@ namespace NLayer.Repository.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.Stock).IsRequired();
-            builder.Property(x=>x.Name).IsRequired().HasMaxLength(200);
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(200);
             builder.Property(x => x.Price).IsRequired().HasColumnType("decimal(18,2)"); ;
 
-            builder.HasOne(x => x.Category).WithMany(x=>x.Products).HasForeignKey(x=>x.CategoryId); //1:m 
+            builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId); //1:m 
 
             builder.ToTable("Products");
         }

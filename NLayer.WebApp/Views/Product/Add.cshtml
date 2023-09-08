@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Add";
+}
+@model ProductDto
+<h1>Add</h1>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="add" method="post" app-controller="product">
+            <div class="form-group">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stock" class="form-label"></label>
+                <input asp-for="Stock" class="form-control">
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="form-label"></label>
+                <input asp-for="Price" class="form-control">
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="form-label"></label>
+                <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Add" />
+
+            </div>
+        </form>
+    </div>
+</div>

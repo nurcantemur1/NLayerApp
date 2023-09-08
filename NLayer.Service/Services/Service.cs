@@ -3,13 +3,7 @@ using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
 using NLayer.Service.Exceptions;
-using NLayer.Service.Expections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLayer.Service.Services
 {
@@ -53,14 +47,14 @@ namespace NLayer.Service.Services
             var item = await _repository.GetByIdAsync(id);
             if (item == null)
             {
-                throw new NotFoundException($"{ typeof(T).Name}-{id} not found");
+                throw new NotFoundException($"{typeof(T).Name}-{id} not found");
             }
             return item;
         }
 
         public async Task RemoveAsync(T entity)
         {
-             _repository.Remove(entity);
+            _repository.Remove(entity);
             await _unitOfWork.CommitAsync();
         }
 
@@ -77,7 +71,7 @@ namespace NLayer.Service.Services
             await _unitOfWork.CommitAsync();
         }
 
-        public  IQueryable<T> Where(Expression<Func<T, bool>> expression)
+        public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
             return _repository.Where(expression);
         }
