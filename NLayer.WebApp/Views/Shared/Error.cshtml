@@ -8,10 +8,11 @@
 <br />
 @if (Model.Errors.Any())
 {
-    foreach (var item in Model.Errors)
-    {
-        <div class="alert-danger">
+    <div class="alert-danger">
+        @foreach (var item in Model.Errors)
+        {
             <p>@item</p>
+        }
         </div>
-    }
+    
 }

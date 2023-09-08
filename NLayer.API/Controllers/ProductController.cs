@@ -25,7 +25,7 @@ namespace NLayer.API.Controllers
             var productsDtos = _mapper.Map<List<ProductDto>>(products.ToList());
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(productsDtos, 200));
         }
-        [ServiceFilter(typeof(NotFoundFilter<Product>))]
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -42,6 +42,7 @@ namespace NLayer.API.Controllers
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(productsDto, 201));
         }
 
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         [HttpPut]
         public async Task<IActionResult> Update(ProductUpdateDto productDto)
         {

@@ -14,6 +14,7 @@
             <td>stock</td>
             <td>Category</td>
             <td>created date</td>
+            <td>updated date</td>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +27,7 @@
                 <td>@item.Stock</td>
                 <td>@item.Category.Name</td>
                 <td>@item.createdDate</td>
+                <td>@item.updatedDate</td>
                 <td><a class="btn btn-warning" asp-route-id="@item.Id" app-controller="Product" asp-action="update">Update</a> </td>
                 <td><a class="btn btn-danger" asp-route-id="@item.Id" app-controller="Product" asp-action="delete">Delete</a> </td>
 
