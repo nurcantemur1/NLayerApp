@@ -30,7 +30,6 @@ namespace NLayer.API.Modules
             builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 
-            builder.RegisterType<ProductServiceCaching>().As<IProductService>();
 
             base.Load(builder);
         }

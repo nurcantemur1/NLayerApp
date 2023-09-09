@@ -28,7 +28,6 @@ namespace NLayer.WebApp.Modules
             builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
-            builder.RegisterType<ProductServiceNoCaching>().As<IProductService>();
             base.Load(builder);
         }
     }

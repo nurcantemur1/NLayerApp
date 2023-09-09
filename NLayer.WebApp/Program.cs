@@ -7,6 +7,7 @@ using NLayer.Service.Mapping;
 using NLayer.Service.Validations;
 using NLayer.WebApp.Filters;
 using NLayer.WebApp.Modules;
+using NLayer.WebApp.Services;
 using System.Reflection;
 
 namespace NLayer.WebApp
@@ -19,7 +20,7 @@ namespace NLayer.WebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidation>());
-            
+
 
             builder.Services.AddAutoMapper(typeof(MapProfile));
 
@@ -30,6 +31,11 @@ namespace NLayer.WebApp
                     option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
                 });
             });
+
+            builder.Services.AddHttpClient<ProductApiService>(option => option.BaseAddress = new Uri(builder.Configuration["BaseUrl"]));
+            builder.Services.AddHttpClient<CategoryApiService>(option => option.BaseAddress = new Uri(builder.Configuration["BaseUrl"]));
+
+
             builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -40,7 +46,7 @@ namespace NLayer.WebApp
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
-               
+
 
 
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
