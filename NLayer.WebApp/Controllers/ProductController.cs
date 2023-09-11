@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NLayer.Core.DTOs;
-using NLayer.Core.Entity;
-using NLayer.WebApp.Filters;
 using NLayer.WebApp.Services;
 
 namespace NLayer.WebApp.Controllers
@@ -50,7 +48,7 @@ namespace NLayer.WebApp.Controllers
             return View();
         }
 
-       // [ServiceFilter(typeof(NotFoundFilter<Product>))]
+        // [ServiceFilter(typeof(NotFoundFilter<Product>))]
         public async Task<IActionResult> Update(int id)
         {
             var product = await _productApiService.GetById(id);

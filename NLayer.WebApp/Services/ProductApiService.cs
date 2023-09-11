@@ -42,10 +42,10 @@ namespace NLayer.WebApp.Services
             var response = await _httpClient.GetFromJsonAsync<CustomResponseDto<ProductDto>>($"product/{id}");
             return response.Data;
         }
-     /*   public async Task<List<ProductDto>> GetAll()
-        {
-            var response = await _httpClient.GetFromJsonAsync<CustomResponseDto<List<ProductDto>>>("product/getall");
-            return response.Data;
-        }*/
+        /*   public async Task<List<ProductDto>> GetAll()
+           {
+               var response = await _httpClient.GetFromJsonAsync<CustomResponseDto<List<ProductDto>>>("product/getall");
+               return response.Data;
+           }*/
     }
 }
