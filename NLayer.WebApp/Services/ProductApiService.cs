@@ -28,7 +28,7 @@ namespace NLayer.WebApp.Services
         }
         public async Task<bool> Update(ProductDto productDto)
         {
-            var response = await _httpClient.PutAsJsonAsync("product", productDto);
+            var response = await _httpClient.PutAsJsonAsync("product/Update", productDto);
             return response.IsSuccessStatusCode;
 
         }
@@ -40,6 +40,7 @@ namespace NLayer.WebApp.Services
         public async Task<ProductDto> GetById(int id)
         {
             var response = await _httpClient.GetFromJsonAsync<CustomResponseDto<ProductDto>>($"product/{id}");
+            var c = response.Data;
             return response.Data;
         }
         /*   public async Task<List<ProductDto>> GetAll()

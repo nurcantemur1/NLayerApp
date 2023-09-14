@@ -54,6 +54,10 @@ namespace NLayer.WebApp.Controllers
             var product = await _productApiService.GetById(id);
 
             var categories = await _categoryApiService.GetAllCategories();
+            foreach (var item in categories)
+            {
+                Console.WriteLine(item.Name);
+            }
             ViewBag.Categories = new SelectList(categories, "Id", "Name", product.CategoryId);
 
             return View(product);

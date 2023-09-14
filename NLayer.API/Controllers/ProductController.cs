@@ -42,8 +42,8 @@ namespace NLayer.API.Controllers
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(productsDto, 201));
         }
 
-        [ServiceFilter(typeof(NotFoundFilter<Product>))]
-        [HttpPut]
+    //    [ServiceFilter(typeof(NotFoundFilter<Product>))]
+        [HttpPut("[action]")]
         public async Task<IActionResult> Update(ProductUpdateDto productDto)
         {
             await _productservice.UpdateAsync(_mapper.Map<Product>(productDto));

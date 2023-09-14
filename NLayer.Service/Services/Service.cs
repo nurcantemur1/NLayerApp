@@ -39,6 +39,7 @@ namespace NLayer.Service.Services
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
+            var c = await _repository.GetAll().ToListAsync();
             return await _repository.GetAll().ToListAsync();
         }
 
@@ -67,7 +68,7 @@ namespace NLayer.Service.Services
 
         public async Task UpdateAsync(T entity)
         {
-            _repository.Update(entity);
+             _repository.Update(entity);
             await _unitOfWork.CommitAsync();
         }
 

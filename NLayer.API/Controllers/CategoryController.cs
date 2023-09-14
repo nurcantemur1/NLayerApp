@@ -20,16 +20,22 @@ namespace NLayer.API.Controllers
         [HttpGet("[action]/{id}")]
         public async Task<IActionResult> CategoryWithProducts(int id)
         {
+            await _categoryService.CategoryWithProducts(id);
             return CreateActionResult(await _categoryService.CategoryWithProducts(id));
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async Task<IActionResult> GetAll()
         {
             var categories = await _categoryService.GetAllAsync();
-            var newlist = _mapper.Map<List<CategoryDto>>(categories.ToList());
-            return CreateActionResult(CustomResponseDto<List<CategoryDto>>.Success(newlist, 204));
+            var newlist =  _mapper.Map<List<CategoryDto>>(categories.ToList());
+            foreach (var item in newlist)
+            {
+                Console.WriteLine(item.Name);
+            }
+            return CreateActionResult(CustomResponseDto<List<CategoryDto>>.Success(newlist, 200));
         }
+      
 
     }
 }
